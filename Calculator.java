@@ -13,10 +13,15 @@ import javax.swing.SwingConstants;
 
 public class Calculator implements ActionListener{
 	boolean operaterClicked=false;
+
 	JFrame jf;
+	float oldValue,newValue ,result;
+	int operator=0;
+
 	JLabel displayLabel;
 	JButton sevenButton,eightButton,nineButton,divButton,fourButton,fiveButton,sixButton,mulButton,oneButton,twoButton,threeButton,minusButton;
 	JButton dotButton,zeroButton,equalButton,plusButton,clearButton;
+	
 	public Calculator() {
 		jf= new JFrame("calculator");
 		jf.setLayout(null);
@@ -55,7 +60,6 @@ public class Calculator implements ActionListener{
 		divButton.setFont(new Font("Arial", Font.PLAIN,40));
 		jf.add(divButton);
 				
-	///
 		fourButton = new JButton("4");
 		fourButton.setBounds(40,250,80,80);
 		fourButton.addActionListener(this);
@@ -80,8 +84,6 @@ public class Calculator implements ActionListener{
 		mulButton.setFont(new Font("Arial", Font.PLAIN,40));
 		jf.add(mulButton);
 				
-	///
-		
 		oneButton = new JButton("1");
 		oneButton.setBounds(40,370,80,80);
 		oneButton.addActionListener(this);
@@ -106,7 +108,6 @@ public class Calculator implements ActionListener{
 		minusButton.setFont(new Font("Arial", Font.PLAIN,40));
 		jf.add(minusButton);
 		
-	///
 		dotButton = new JButton(".");
 		dotButton.setBounds(40,480,80,80);
 		dotButton.addActionListener(this);
@@ -136,101 +137,170 @@ public class Calculator implements ActionListener{
 		clearButton.addActionListener(this);
 		clearButton.setFont(new Font("Arial", Font.PLAIN,30));
 		jf.add(clearButton);
-		
-		
-		
+				
 		jf.setVisible(true);
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
-		
+		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		
 	}
-	
-	
-	public static void main(String[] args) {
-		new Calculator();
 		
-	}
-
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
-		if(e.getSource()== sevenButton) {
-			
+		// TODO Auto-generated method stub		
+		
+		if(e.getSource()== sevenButton) {			
 			if(operaterClicked) {
 				displayLabel.setText("7");
-			}
-			
+				operaterClicked=false;
+			}else {			
 			displayLabel.setText(displayLabel.getText()+"7");
+			}
 		}
-		else if (e.getSource()== eightButton){
+		else if (e.getSource()== eightButton){			
+			if(operaterClicked) {
+				displayLabel.setText("8");
+				operaterClicked=false;
+			}else {						
 			displayLabel.setText(displayLabel.getText()+"8");
-			
+			}
 		}
-		else if (e.getSource()== nineButton){
+		else if (e.getSource()== nineButton){			
+			if(operaterClicked) {
+				displayLabel.setText("9");
+				operaterClicked=false;
+			}else {								
 			displayLabel.setText(displayLabel.getText()+"9");
-			
+			}
 		}
-		else if (e.getSource()== fiveButton){
+		else if (e.getSource()== fiveButton){			
+			if(operaterClicked) {
+				displayLabel.setText("5");
+				operaterClicked=false;
+			}else {			
 			displayLabel.setText(displayLabel.getText()+"5");
-			
+			}
 		}
-		else if (e.getSource()== fourButton){
+		else if (e.getSource()== fourButton){			
+			if(operaterClicked) {
+				displayLabel.setText("4");
+				operaterClicked=false;
+			}else {			
 			displayLabel.setText(displayLabel.getText()+"4");
-			
-		}
-		else if (e.getSource()== sixButton){
-			displayLabel.setText(displayLabel.getText()+"6");
-			
-		}
-		else if (e.getSource()== oneButton){
-			displayLabel.setText(displayLabel.getText()+"1");
-			
-		}
-		else if (e.getSource()== twoButton){
-			displayLabel.setText(displayLabel.getText()+"2");
-			
-		}
-		else if (e.getSource()== threeButton){
-			displayLabel.setText(displayLabel.getText()+"3");
-			
-		}
-		else if (e.getSource()== zeroButton){
-			displayLabel.setText(displayLabel.getText()+"0");
-			
-		}
-		else if (e.getSource()== divButton){
-			
-			
-		}
-		else if (e.getSource()== mulButton){
-		
-			
-		}
-		else if (e.getSource()== minusButton){
-		
-			
+			}
 		}		
-		else if (e.getSource()== plusButton){
-		    operaterClicked=true;	
-			
-		}
-		else if (e.getSource()== dotButton){
+		else if (e.getSource()== sixButton){			
+			if(operaterClicked) {
+				displayLabel.setText("6");
+				operaterClicked=false;
+			}else {			
+			displayLabel.setText(displayLabel.getText()+"6");
+			}
+		}		
+		else if (e.getSource()== oneButton){			
+			if(operaterClicked) {
+				displayLabel.setText("1");
+				operaterClicked=false;		
+			}else {
+			displayLabel.setText(displayLabel.getText()+"1");
+			}
+		}		
+		else if (e.getSource()== twoButton){			
+			if(operaterClicked) {
+				displayLabel.setText("2");
+				operaterClicked=false;
+			}else {			
+			displayLabel.setText(displayLabel.getText()+"2");
+			}
+		}		
+		else if (e.getSource()== threeButton){
+			if(operaterClicked) {
+				displayLabel.setText("3");
+				operaterClicked=false;
+			}else {			
+			displayLabel.setText(displayLabel.getText().concat("3"));
+			}
+		}		
+		else if (e.getSource()== zeroButton){
+			if(operaterClicked) {
+				displayLabel.setText("0");
+				operaterClicked=false;
+			}else {	
+			displayLabel.setText(displayLabel.getText()+"0");
+			}
+		}		
+		else if (e.getSource()== dotButton){                           
+			if(operaterClicked) {
+				displayLabel.setText(".");
+				operaterClicked=false;
+			}else {
 			displayLabel.setText(displayLabel.getText()+".");
-			
+			}
 		}
-		else if (e.getSource()== equalButton){
 		
+	/*operators*/
+		else if (e.getSource()== minusButton){                          	
+			operaterClicked=true;
+			oldValue=Float.parseFloat(displayLabel.getText());
+			     operator=1;	    		    
+		 }
+						
+		else if (e.getSource()== plusButton){                        
+		    operaterClicked=true;
+		    oldValue=Float.parseFloat(displayLabel.getText());
+		    	 operator=2;     
+		}
+		
+		else if (e.getSource()== divButton){
+			operaterClicked=true;
+			oldValue=Float.parseFloat(displayLabel.getText());
+			     operator=3;	
+		}
+		
+		else if (e.getSource()== mulButton){
+			operaterClicked=true;
+			oldValue=Float.parseFloat(displayLabel.getText());
+			     operator=4;		
+		}
+	
+		else if (e.getSource()== equalButton){                        
+		    newValue=Float.parseFloat(displayLabel.getText());
+			 
+			 switch (operator) {
+			case 1: {
+				
+				result=oldValue-newValue;
+				break;
+			}
+			case 2:{
+				result=oldValue+newValue;
+				break;
+			}
+			case 3:{
+				result=oldValue/newValue;
+				break;
+			}
+			case 4:{
+				result=oldValue*newValue;
+			}
+				break;				
+			default:			 
+				throw new IllegalArgumentException("Unexpected value: " + operator);
+			 }
+				
+			displayLabel.setText(result+"");
 			
 		}
 		else if (e.getSource()== clearButton) {
 			displayLabel.setText("");
-		}
+		}	
+		
 	}
+		
+	public static void main(String[] args) {
+		
+		new Calculator();
+	}
+}
+		
 	
 	
 
-}
